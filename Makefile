@@ -6,7 +6,7 @@
 #    By: frudello <frudello@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/11 20:28:51 by frudello          #+#    #+#              #
-#    Updated: 2022/06/12 17:52:06 by frudello         ###   ########.fr        #
+#    Updated: 2022/06/30 02:34:45 by frudello         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,12 +21,12 @@ P3		=	img_utils/
 P4		=	map_utils/
 P5		=	utils/
 
-SL_SRC	=	so_long.c							\
+SL_SRC	=	so_long.c split.c checkmap1.c readmap.c Flibft.c Flibft2.c mappiamola.c move.c\
 
 SL_OBJ	=	$(SL_SRC:.c=.o)
 
 %.o: %.c
-			$(CC) ${CFLAGS} -g -c $< -o $@ 
+			$(CC) ${CFLAGS} -g -c $< -o $@
 
 MLX		=	./libmlx.dylib
 
@@ -39,7 +39,7 @@ $(NAME):	$(SL_OBJ)
 			@(echo "\033[32mSO_LONG>> Compiled\033[0m")
 
 all:		$(NAME)
- 
+
 norme:
 		@norminette $(SL_SRC)
 
