@@ -6,7 +6,7 @@
 /*   By: frudello <frudello@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 20:10:15 by frudello          #+#    #+#             */
-/*   Updated: 2022/06/30 18:47:26 by frudello         ###   ########.fr       */
+/*   Updated: 2022/07/02 13:47:17 by frudello         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@
 //# include "minilibx/mlx.h"
 //# include "errors/sl_errors.h"
 
-typedef struct	s_check {
+typedef struct s_check
+{
 	int		collect;
 	int		exit;
 	int		wall;
@@ -40,12 +41,12 @@ typedef struct	s_check {
 typedef struct s_mlx {
 	void	*mlx;
 	void	*win;
-	int 	x;
-	int 	y;
+	int		x;
+	int		y;
 	void	*gerry;
 }				t_mlx;
 
-typedef struct	s_map {
+typedef struct s_map {
 	t_check	check;
 	t_mlx	*mlx;
 	int		collezionabile;
@@ -61,8 +62,6 @@ typedef struct	s_map {
 	char	**map;
 }				t_map;
 
-
-
 void	ft_putchar(char c);
 void	ft_putchar_fd(char c, int fd);
 void	ft_putstr(char *s);
@@ -70,7 +69,7 @@ void	ft_putstr_fd(char *s, int fd);
 int		ft_strlen(const char *str);
 char	*get_next_line(int fd);
 void	initial_value(t_map *map);
-char    **MAP(char *wam);
+char	**smap(char *wam);
 char	**ft_split(char const *s, char c);
 void	walenght(t_map *map_s);
 void	edges(t_map *map_s);
@@ -85,5 +84,6 @@ void	put_wall(t_map *m, int i, int j, char *s);
 void	move_down(t_map *m);
 void	move_right(t_map *m);
 void	move_left(t_map *m);
+int		close_all(t_mlx *mlx_s);
 
 #endif

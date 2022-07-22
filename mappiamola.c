@@ -6,7 +6,7 @@
 /*   By: frudello <frudello@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 15:29:58 by frudello          #+#    #+#             */
-/*   Updated: 2022/06/30 18:12:48 by frudello         ###   ########.fr       */
+/*   Updated: 2022/07/22 15:11:41 by frudello         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,40 +14,53 @@
 
 void	put_wall(t_map *m, int i, int j, char *s)
 {
-	t_mlx	*gay;
+	t_mlx	*variabile;
 	int		h;
 
-	gay = m->mlx;
-	mlx_put_image_to_window(gay->mlx, gay->win, mlx_xpm_file_to_image(gay->mlx, s, &h, &h), j * 64, i * 64);
+	variabile = m->mlx;
+	mlx_put_image_to_window(variabile->mlx, variabile->win, \
+		mlx_xpm_file_to_image(variabile->mlx, \
+		s, &h, &h), j * 64, i * 64);
 }
 
 int	cazzostampo(char c)
 {
-	if(c == '0')
-		return(5);
-	else if(c == '1')
-		return(1);
-	else if(c == 'C')
-		return(2);
-	else if(c == 'E')
-		return(3);
-	else if(c == 'P')
-		return(4);
-	//if(c == '0')
-	return(0);
+	if (c == '0')
+		return (5);
+	else if (c == '1')
+		return (1);
+	else if (c == 'C')
+		return (2);
+	else if (c == 'E')
+		return (3);
+	else if (c == 'P')
+		return (4);
+	return (0);
+}
+
+void	muriamola2(t_map *map_s, int i, int j)
+{
+	if (cazzostampo(map_s->map[i][j]) == 3)
+		put_wall(map_s, i, j, "four.xpm");
+	else if (cazzostampo(map_s->map[i][j]) == 4)
+	{
+		put_wall(map_s, i, j, "player.xpm");
+		map_s->pcolonne = j;
+		map_s->prighe = i;
+	}
 }
 
 void	muriamola(t_map *map_s)
 {
-	int i;
-	int j;
-	map_s->collezionabile=0;
+	int	i;
+	int	j;
 
+	map_s->collezionabile = 0;
 	i = -1;
-	while(++i < map_s->check.y)
+	while (++i < map_s->check.y)
 	{
 		j = -1;
-		while(++j < map_s->check.x)
+		while (++j < map_s->check.x)
 		{
 			if (cazzostampo(map_s->map[i][j]) != 1)
 				put_wall(map_s, i, j, "floor1.xpm");
@@ -56,27 +69,10 @@ void	muriamola(t_map *map_s)
 			else if (cazzostampo(map_s->map[i][j]) == 2)
 			{
 				put_wall(map_s, i, j, "evil1.xpm");
-				map_s->collezionabile +=1;
+				map_s->collezionabile++;
 			}
-			else if (cazzostampo(map_s->map[i][j]) == 3)
-				put_wall(map_s, i, j, "four.xpm");
-			else if (cazzostampo(map_s->map[i][j]) == 4)
-			{
-				put_wall(map_s, i, j, "three.xpm");
-				map_s->pcolonne = j;
-				map_s->prighe = i;
-			}
+			else
+				muriamola2(map_s, i, j);
 		}
 	}
-	//printf("gagaerg %d || %d\n", map_s->pcolonne, map_s->prighe);
-	//i = -1;
-	//while(++i < map_s->check.y)
-	//{
-	//	j = -1;
-	//	while(++j < map_s->check.x)
-	//	{
-	//		cazzostampo (map_s->map[i][j])
-
-	//	}
-	//}
 }

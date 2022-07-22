@@ -6,7 +6,7 @@
 /*   By: frudello <frudello@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 17:31:51 by frudello          #+#    #+#             */
-/*   Updated: 2022/06/22 17:32:40 by frudello         ###   ########.fr       */
+/*   Updated: 2022/07/02 13:39:38 by frudello         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,27 @@ char	*ft_itoa(int n)
 	if (n < 0)
 		f[0] = '-';
 	return (f);
+}
+
+void	ft_putnbr(int n)
+{
+	if (n == -2147483648)
+	{
+		ft_putchar('-');
+		ft_putchar('2');
+		n = 147483648;
+	}
+	if (n < 0)
+	{
+		ft_putchar('-');
+		n *= -1;
+	}
+	if (n < 10)
+	{
+		ft_putchar((n + 48));
+		return ;
+	}
+	else
+		ft_putnbr(n / 10);
+	ft_putnbr(n % 10);
 }

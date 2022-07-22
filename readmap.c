@@ -6,7 +6,7 @@
 /*   By: frudello <frudello@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 19:15:02 by frudello          #+#    #+#             */
-/*   Updated: 2022/06/24 16:45:28 by frudello         ###   ########.fr       */
+/*   Updated: 2022/07/02 13:45:30 by frudello         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ char	*get_next_line(int fd)
 	return (new_a);
 }
 
-char    **MAP(char *wam)
+char	**smap(char *wam)
 {
 	char	*pippo;
 	char	**map;
@@ -46,9 +46,12 @@ char    **MAP(char *wam)
 
 	fd = open(wam, O_RDONLY);
 	if (fd < 1)
-		printf("errato gay");
+	{
+		ft_putstr("errato scemodemmerdaa\n");
+		return (NULL);
+	}
 	pippo = get_next_line(fd);
-	printf("%s\n", pippo);
 	map = ft_split(pippo, '\n');
+	free(pippo);
 	return (map);
 }
